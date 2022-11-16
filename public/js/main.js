@@ -24,3 +24,24 @@ campoTexto.on("input", function(){
 
 })
 
+// contador tempo
+
+let contadorTempo = $("#contador-tempo").text();
+campoTexto.one("focus", function(){
+  let cronometroID = setInterval(function(){
+    contadorTempo--;
+    $("#contador-tempo").text(contadorTempo);
+    if(contadorTempo < 1){
+      campoTexto.attr("disabled", true);
+      clearInterval(cronometroID);
+    }
+  }, 1000);
+  
+  
+});
+
+
+// reinicar jogo
+$("#btn-reiniciar").click(function(){
+  console.log("cliquei")
+})
