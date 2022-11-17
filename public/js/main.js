@@ -63,13 +63,37 @@ function calculaTempo(){
       $("#contador-tempo").text(contadorTempo);
       if(contadorTempo < 1){
         clearInterval(cronometroID);
-        campoTexto.attr("disabled", true);
-        campoTexto.toggleClass("campo-desativado");
+        finalizaJogo();
       }
     }, 1000);
     
   });
 }
+
+function finalizaJogo(){
+  campoTexto.attr("disabled", true);
+  campoTexto.toggleClass("campo-desativado");
+  inserePlacar();
+}
+
+//placar
+function inserePlacar(){
+  let tbody = $(".placar").find("tbody");
+  let numPalavras =  $("#contador-palavras").text();
+  let numCaracteres = $("#contador-caracteres").text();
+  let usuario = "Michelle";
+
+  let tr = "<tr>" +
+              "<td>" + usuario + "</td>" +
+              "<td>" + numCaracteres + "</td>" +
+              "<td>" + numPalavras + "</td>" +
+            "</tr>";
+
+  tbody.prepend(tr);
+
+
+}
+
 
 // reiniciar jogo
 function reiniciarJogo(){
@@ -86,8 +110,4 @@ function reiniciarJogo(){
 
 
 
-//placar
-function inserePlacar(){
-  let tabela = $(".placar").find("tbody");
 
-}
